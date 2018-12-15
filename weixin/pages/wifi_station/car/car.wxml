@@ -1,0 +1,28 @@
+
+<!--pages/control/control.wxml-->
+
+<view class='control'>
+
+  <!-- This image shows the camera view -->
+
+  <image  class="video" src='http://192.168.50.122:8090/?action=stream' style="z-index:1" ></image>
+
+ 
+
+ 
+
+</view>
+<view class="btn-wrap">
+<image class='button'  id='forward' src='../../../images/up.png' bindtouchstart='carMove' data-direction='F' bindtouchend='carStop'></image>
+
+  <image class='button' id='left'src='../../../images/left.png' bindtouchstart='carMove' data-direction='L' bindtouchend='carStop'></image>
+
+  <image class='button'  id='right' src='../../../images/right.png' bindtouchstart='carMove' data-direction='R' bindtouchend='carStop'></image>
+
+  <image class='button' id='stop' src='../../../images/stop.png' bindtouchstart='carMove' data-direction='S' bindtouchend='carStop'></image>
+
+
+  <image class='button' id='back' src='../../../images/down.png' bindtouchstart='carMove' data-direction='B' bindtouchend='carStop'></image>
+ 
+
+</view>
