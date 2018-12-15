@@ -1,0 +1,50 @@
+{
+  "pages": [
+    "pages/wifi_station/tianqi/tianqi",
+    "pages/start/start",
+
+    "pages/wifi_station/car/car",
+    
+    "pages/wifi_station/a/a",
+    "pages/wifi_station/warn_info/warn_info"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "blue",
+    "navigationBarTitleText": "树莓小车",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true
+  },
+  "debug": true,
+  "tabBar":{
+    "selectedColor": "#1296db",
+    "list": [
+      {
+        "pagePath": "pages/wifi_station/tianqi/tianqi",
+        "text": "环境监测",
+        "iconPath": "images/1.png",
+        "selectedIconPath": "images/1-a.png"
+      },
+      {
+        "pagePath": "pages/start/start",
+        "text": "报警信息",
+        "iconPath": "images/2.png",
+        "selectedIconPath": "images/2-a.png"
+      },
+      {
+        "pagePath": "pages/wifi_station/car/car",
+        "text": "远程控制",
+        "iconPath": "images/3.png",
+        "selectedIconPath": "images/3-a.png"
+      },
+      {
+        "pagePath": "pages/wifi_station/a/a",
+        "text": "关于我们",
+        "iconPath": "images/4.png",
+        "selectedIconPath": "images/4-a.png"
+      }
+    ]
+
+
+  }
+}
