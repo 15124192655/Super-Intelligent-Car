@@ -1,0 +1,183 @@
+
+<html>
+
+<script>
+
+    function directionBtnDown(direction) {
+
+        var url = "requestAddress"
+
+        var request = new XMLHttpRequest();
+
+        request.open("POST", url);
+
+ 
+
+        request.send(direction)
+
+    }
+
+ 
+
+    function directionBtnUp() {
+
+        var url = "requestAddress"
+
+        var request = new XMLHttpRequest();
+
+        request.open("POST", url);
+
+       
+
+    }
+
+</script>
+
+<style type="text/css">
+
+    span.car {
+
+        position: absolute;
+
+        margin-top: 30%;
+
+        height: 480px;   
+
+    }
+
+ 
+
+    span.camera {
+
+        position: absolute;
+
+        margin-top: 5%;
+
+        margin-left: 290px;
+
+        height: 480px;
+
+        width: 640px;
+
+        background-color: blue
+
+    }
+
+ 
+
+    span.camera_control {
+
+        position: absolute;
+
+        margin-top: 30%;
+
+        margin-left: 950px;
+
+        height: 480px;
+
+        background-color: blue
+
+    }
+
+ 
+
+ 
+
+    button.top {
+
+        position: absolute;
+
+        height: 50px;
+
+        width: 90px;
+
+        margin-left: 90px
+
+    }
+
+ 
+
+    button.left {
+
+        position: absolute;
+
+        height: 50px;
+
+        width: 90px;
+
+        margin-top: 50px;
+
+    }
+
+ 
+
+    button.right {
+
+        position: absolute;
+
+        height: 50px;
+
+        width: 90px;
+
+        margin-top: 50px;
+
+        margin-left: 180px
+
+    }
+
+ 
+
+    button.bottom {
+
+        position: absolute;
+
+        height: 50px;
+
+        width: 90px;
+
+        margin-top: 100px;
+
+        margin-left: 90px
+
+    }
+
+</style>
+
+ 
+
+<head>
+
+    <title>control page</title>
+
+</head>
+
+ 
+
+<body>
+
+    <span id="car_control" class="car">
+
+        <button class="top drectionBtn" id="F" onmousedown="directionBtnDown('F')" onmouseup="directionBtnUp()">F</button>
+
+        <button class="left drectionBtn" id="L" onmousedown="directionBtnDown('L')" onmouseup="directionBtnUp()">L</button>
+
+        <button class="right drectionBtn" id="R" onmousedown="directionBtnDown('R')" onmouseup="directionBtnUp()">R</button>
+
+        <button class="bottom drectionBtn" id="B" onmousedown="directionBtnDown('B')" onmouseup="directionBtnUp()">B</button>
+
+    </span>
+
+    <span id="camera_view" class="camera">
+
+        <img id="view" src="cameraAddress?action=stream" />
+
+    </span>
+
+
+ 
+
+</body>
+
+ 
+
+</html>
