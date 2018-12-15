@@ -1,0 +1,34 @@
+/* start.wxss */
+
+.background {
+  position: absolute;
+  height:100vh;
+  top:0;
+  left:0;
+  z-index:-3;
+  width:750rpx;
+  background-size:cover;
+}
+
+.a{
+  
+  height:20px ;
+  color:blue;
+}
+
+
+
+.a{
+  color: rgba(22, 255, 224, 0.788);
+  width:20px;
+  height:20;
+}
+.background {
+  position: absolute;
+  height:100vh;
+  top:0;
+  left:0;
+  z-index:-300;
+  width:750rpx;
+  background-size:cover;
+}
