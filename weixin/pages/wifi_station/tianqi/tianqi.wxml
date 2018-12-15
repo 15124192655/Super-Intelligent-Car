@@ -1,0 +1,15 @@
+<!-- <view class="background" style="background:url('../../images/back.jpg');height:100vh;position:absolute;top:0;left:0;z-index:-3;width:750rpx;background-size:cover"></view> -->
+ <!-- <image class="background" src="../../../images/flower.png"></image>  -->
+<canvas class = "canvas" id="chart1"
+
+canvas-id="humidity" ></canvas>
+
+ <canvas class = "canvas" id="chart2"
+
+canvas-id="light"></canvas>
+
+<canvas class = "canvas" id="chart3"
+
+canvas-id="tempe"></canvas> 
+
+
