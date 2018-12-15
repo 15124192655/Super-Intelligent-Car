@@ -1,0 +1,4 @@
+<text decode="{{true}}" space="{{true}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们制作了一辆玩用兼具的环境探测小车，我们可以通过微信小程序配着视频流的界面远程操控它的移动，它走到哪，就能将哪里的环境数据收入我们囊中。打开小车华丽的外观，内有各式的元器件，其中树莓派是里面最主要的一个元器件了，它是一个卡片型电脑，将马达、摄像头、各种传感器等连接于其上，编写驱动程序，就完成了树莓派对小车的控制。再在微信端写函数调用树莓服务器端口请求这些数据，即完成了远程的控制。此三言两语，不足道清，诚邀当面赏玩。</text>
+
+<!-- <view class="background" style="background:url('../../../images/flower.png');height:100vh;position:absolute;top:0;left:0;z-index:-3;width:750rpx;background-size:cover"></view> -->
+<image class="background" src="../../../images/flower.png"></image> 
