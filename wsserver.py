@@ -1,25 +1,37 @@
 # --coding:utf-8--
 
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import time
-import socket
-import urllib
-from car_controler import FourWheelDriveCar
 import asyncio
 import websockets
+import json
+class WsServer:
+    async def bind(self,websocket,path):
+        while True:
+            data=await websocket.recv()
+            if(self.debug):print(f"recv {data}")
+            dec=json.loads(data)
+            # {'handle':'?',...}
+            if dec['handle'] in self.handle.keys():
+                self.handle[dec['handle']](dec)
 
+    def __init__(self,port,debug=False):
+        self.wbserver=websockets.serve(self.bind,'127.0.0.1',port)
+        self.debug=debug
+        self.handle={}
 
-carControler = FourWheelDriveCar()
+    def loop_sync(self):
+        asyncio.get_event_loop().run_until_complete(self.wbserver)
+        print("server is running")
+    
+    def loop(self):
+        self.loop_sync()
+        asyncio.get_event_loop().run_forever()
 
-async def bind(websocket,path):
-    while True:
-        name=await websocket.recv()
-        print(f"recv {name}")
-        carControler.carMove(name)
+    def hand(self,key,func):
+        self.handle[key]=func
 
-wbserver=websockets.serve(bind,'127.0.0.1',9090)
-
-asyncio.get_event_loop().run_until_complete(wbserver)
-asyncio.get_event_loop().run_forever()
-
-
+if __name__=="__main__":
+    ws=WsServer('9090',True)
+    def test(data):
+        print("yes")
+    ws.hand("test",test)
+    ws.loop()
