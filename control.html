@@ -1,183 +1,69 @@
-
 <html>
-
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script>
-
-    function directionBtnDown(direction) {
-
-        var url = "requestAddress"
-
-        var request = new XMLHttpRequest();
-
-        request.open("POST", url);
-
- 
-
-        request.send(direction)
-
-    }
-
- 
-
-    function directionBtnUp() {
-
-        var url = "requestAddress"
-
-        var request = new XMLHttpRequest();
-
-        request.open("POST", url);
-
-       
-
-    }
-
+$(document).ready(function(){
+	var ws=new WebSocket('ws://127.0.0.1:9090');
+	ws.onopen=function(e){
+		console.log('websocket connected');
+	};
+	
+	ws.onmessage=function(e){
+		console.log('recv msg',e.data);
+		dec=JSON.parse(e.data);
+	}
+	ws.onclose=function(e){
+		console.log('websocket disconnected');
+	};
+	
+	$(".btn").click(function(){
+		console.log($(this).html());
+		data={'handle':'move','direction':$(this).html(),};
+		ws.send(JSON.stringify(data));
+	});
+});
 </script>
 
 <style type="text/css">
-
-    span.car {
-
-        position: absolute;
-
-        margin-top: 30%;
-
-        height: 480px;   
-
-    }
-
- 
-
-    span.camera {
-
-        position: absolute;
-
-        margin-top: 5%;
-
-        margin-left: 290px;
-
-        height: 480px;
-
-        width: 640px;
-
-        background-color: blue
-
-    }
-
- 
-
-    span.camera_control {
-
-        position: absolute;
-
-        margin-top: 30%;
-
-        margin-left: 950px;
-
-        height: 480px;
-
-        background-color: blue
-
-    }
-
- 
-
- 
-
-    button.top {
-
-        position: absolute;
-
-        height: 50px;
-
-        width: 90px;
-
-        margin-left: 90px
-
-    }
-
- 
-
-    button.left {
-
-        position: absolute;
-
-        height: 50px;
-
-        width: 90px;
-
-        margin-top: 50px;
-
-    }
-
- 
-
-    button.right {
-
-        position: absolute;
-
-        height: 50px;
-
-        width: 90px;
-
-        margin-top: 50px;
-
-        margin-left: 180px
-
-    }
-
- 
-
-    button.bottom {
-
-        position: absolute;
-
-        height: 50px;
-
-        width: 90px;
-
-        margin-top: 100px;
-
-        margin-left: 90px
-
-    }
-
+.btn {
+	text-align: center;
+}
 </style>
 
  
 
 <head>
-
     <title>control page</title>
-
 </head>
-
- 
-
 <body>
+<div style="
+    position: relative;
+    border: solid;
+    width: 75px;
+">
+	<div class="btn" style="
+    text-align: center;
+    /* background-color: green; */
+">F</div>
+	<div>
+		<div  class="btn" style="
+    float: left;
+    width: 50%;
+    text-align: center;
+">L</div>
+		<div class="btn" style="
+    float: left;
+    width: 50%;
+    text-align: center;
+">R</div>
+	</div>
 
-    <span id="car_control" class="car">
-
-        <button class="top drectionBtn" id="F" onmousedown="directionBtnDown('F')" onmouseup="directionBtnUp()">F</button>
-
-        <button class="left drectionBtn" id="L" onmousedown="directionBtnDown('L')" onmouseup="directionBtnUp()">L</button>
-
-        <button class="right drectionBtn" id="R" onmousedown="directionBtnDown('R')" onmouseup="directionBtnUp()">R</button>
-
-        <button class="bottom drectionBtn" id="B" onmousedown="directionBtnDown('B')" onmouseup="directionBtnUp()">B</button>
-
-    </span>
-
-    <span id="camera_view" class="camera">
-
-        <img id="view" src="cameraAddress?action=stream" />
-
-    </span>
+	<div class="btn" style="
+    text-align: center;
+">B</div>
+</div>
 
 
- 
 
 </body>
-
- 
 
 </html>

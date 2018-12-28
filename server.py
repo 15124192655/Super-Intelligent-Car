@@ -13,7 +13,7 @@ import wsserver
 if __name__ == "__main__":
     wss=WsServer('9090',True)
     def bind_move(data):
-        print(data['direction'])
+        carControler.carMove(data['direction'])
     
     wss.hand('move',bind_move)
     wss.loop()
