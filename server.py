@@ -5,6 +5,8 @@ import time
 import socket
 import urllib
 from car_controler import FourWheelDriveCar
+import asyncio
+import websockets
 
 class CarServer(BaseHTTPRequestHandler):
     carControler = FourWheelDriveCar()
@@ -56,6 +58,8 @@ class CarServer(BaseHTTPRequestHandler):
         
         self.end_headers()
 
+async def bindhttp(server):
+    server.serve_forever()
 if __name__ == "__main__":
     raspCarServer = CarServer
     hostIP = raspCarServer.get_host_ip(raspCarServer)
@@ -64,7 +68,18 @@ if __name__ == "__main__":
 
     print(time.asctime(), "Server Starts - %s:%s" % (hostIP, hostPort))
 
-    try:
-        myServer.serve_forever()
-    except KeyboardInterrupt:
-        pass
+    asyncio.get_event_loop().run_until_complete(bindhttp())
+    asyncio.get_event_loop().run_forever()
+
+
+'''
+async def bind(websocket,path):
+    while True:
+        name=await websocket.recv()
+        print(f"< {name}")
+
+wbserver=websockets.serve(bind,'127.0.0.1',8765)
+
+asyncio.get_event_loop().run_until_complete(wbserver)
+#asyncio.get_event_loop().run_forever()
+'''
