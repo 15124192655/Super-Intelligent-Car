@@ -10,11 +10,13 @@ $(document).ready(function(){
 	ws.onmessage=function(e){
 		console.log('recv msg',e.data);
 		dec=JSON.parse(e.data);
+        //TODO: handle consumers here to do data in very way.
 	}
 	ws.onclose=function(e){
 		console.log('websocket disconnected');
 	};
-	
+
+	//movement controller
 	$(".btn").click(function(){
 		console.log($(this).html());
 		data={'handle':'move','direction':$(this).html(),};

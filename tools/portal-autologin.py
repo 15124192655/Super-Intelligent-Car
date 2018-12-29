@@ -1,4 +1,14 @@
 #forgive my poor English
+'''
+guide
+This script is supposed to login bupt-portal automatically.
+To use it, you should provide an account and set two variables `u` and `p`, which is reprensented for username and password.
+Then, run it and set it to be run when system is ready.
+
+[TODO]
+there are two gates 10.3.8.216 and 10.3.8.211, login for first of which is valid for long term that makes me unable to finish this script...
+12/19 there is something wrong that one can surf Internet without logining gate2.
+'''
 from urllib import request,parse
 import sys
 import re
