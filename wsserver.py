@@ -2,6 +2,7 @@
 import asyncio
 import websockets
 import json
+import logging
 class Data:
     def __init__(self,handle):
         self.data['handle']=handle
@@ -9,17 +10,17 @@ class Data:
         await ws.send(json.dumps(self.data))
 class WsServer:
     async def bind(self,websocket,path):
-        print('receive connection from ',path)
+        logging.info('receive connection from %s' % (path))
         while True:
             try:
                 data=await websocket.recv()
-                if(self.debug):print(f"recv {data}")
+                logging.info(f"receive {data}")
                 dec=json.loads(data)
                 # {'handle':'?',...}
                 if dec['handle'] in self.handle.keys():
                     await self.handle[dec['handle']](dec,websocket)#TODO: simplify websocket?
-            except websocket.exceptions.ConnectionClosed:
-                print('connection closed ',path)
+            :
+                logging.info('connection closed')
                 break
         # while end
     #bind end
@@ -31,7 +32,7 @@ class WsServer:
 
     def loop_sync(self):
         asyncio.get_event_loop().run_until_complete(self.wbserver)
-        print("server is running")
+        logging.info('server is running')
     
     def loop(self):
         self.loop_sync()
@@ -41,6 +42,7 @@ class WsServer:
         self.handle[key]=func
 
 if __name__=="__main__":
+    logging.basicConfig(level=logging.DEBUG)
     ws=WsServer('9090',True)
     async def test(data,ws):
         print('test')
