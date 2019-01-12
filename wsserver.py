@@ -8,20 +8,21 @@ class Data:
         self.data['handle']=handle
     async def send(self,ws):
         await ws.send(json.dumps(self.data))
+
 class WsServer:
     async def bind(self,websocket,path):
         logging.info('receive connection from %s' % (path))
         while True:
-            try:
+            #try:
                 data=await websocket.recv()
                 logging.info(f"receive {data}")
                 dec=json.loads(data)
                 # {'handle':'?',...}
                 if dec['handle'] in self.handle.keys():
                     await self.handle[dec['handle']](dec,websocket)#TODO: simplify websocket?
-            :
-                logging.info('connection closed')
-                break
+            #except:
+            #    logging.info('connection closed')
+            #    break
         # while end
     #bind end
 
