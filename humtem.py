@@ -3,9 +3,11 @@ import RPi.GPIO as GPIO
 import time
 import logging
 import urllib
-
-APIKEY = '你的APIKey'
-CYCLETIME= 600 #更新数据的周期
+'''
+This script is used to upload data the sensor gets
+With the crontab, you can run it regularly.
+'''
+APIKEY = 'APIKey'
 def getSensordata():
     channel=4
     data = []
@@ -43,7 +45,7 @@ def getSensordata():
             data.append(1)
         j += 1
 
-    logging.info('sosor is working')
+    logging.info('sonsor is working')
     logging.info('read data: {data}')
 
     # converting data
@@ -78,8 +80,10 @@ def uploadhumtem():
     temperature,humidity=getSensordata()
     logging.info('current sensor result is %s and %s'%(temperature,humidity))
     CurTime = datetime.datetime.now()
+    # put the uploading url and data here`
     url='http://api.heclouds.com/devices/11302038/datapoints'
     values={'datastreams':[{"id":"hum","datapoints":[{"at":CurTime.isoformat(),"value":humidity}]}]}
+    # end
     jdata = json.dumps(values)
     logging.debug(jdata)
 
@@ -91,7 +95,5 @@ def uploadhumtem():
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    while True:
-        uploadhumtem()
-        time.sleep(CYCLETIME)
+    uploadhumtem()
     
