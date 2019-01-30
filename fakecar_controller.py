@@ -2,6 +2,16 @@
 import time
 import configparser
 
+class MotorManager():
+    def __init__(self):
+        self.action_queue=[]
+
+    def add(self,action):
+        action_queue.append(action)
+    def loop(self):
+        pass
+        #TODO: consume action here.
+
 class FourWheelDriveCar():
     # Define the number of all the GPIO that will used for the 4wd car
     def __init__(self):
@@ -16,6 +26,8 @@ class FourWheelDriveCar():
         self.LEFT_FRONT_2 = config.getint("car", "LEFT_FRONT_2")
         self.RIGHT_FRONT_1 = config.getint("car", "RIGHT_FRONT_1")
         self.RIGHT_FRONT_2 = config.getint("car", "RIGHT_FRONT_2")
+
+        self.motor_manager=MotorManager()
  
 
     def reset(self):
@@ -44,6 +56,23 @@ class FourWheelDriveCar():
 
     def __stop(self):
         self.reset()
+    
+    def setmotor(self,id,angle):
+        '''
+        TODO: this function is used to control possible motors.
+        angle is supposed to be ABSTRACT.
+        '''
+        pass
+    def doaction(self,id):
+        '''
+        TODO: express action series like this,'<id>:<abstract angle>,' one by one.
+        '''
+        ACTION={'seize':'i:10,l:20'}
+        series=ACTION['id'].split(',')
+        for i in series:
+            #TODO: 这个小车需要一个描述运动状态的状态机才能继续写下去。
+            self.motor_manager.add(i)
+        
 
     def carMove(self, direction):
         '''

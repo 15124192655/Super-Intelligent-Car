@@ -17,11 +17,21 @@ $(document).ready(function(){
 	};
 
 	//movement controller
-	$(".btn").click(function(){
+	$(".mbtn").mouseup(function(){
+		console.log($(this).html());
+		data={'handle':'move','direction':'S',};
+		ws.send(JSON.stringify(data));
+	});
+	$(".mbtn").mousedown(function(){
 		console.log($(this).html());
 		data={'handle':'move','direction':$(this).html(),};
 		ws.send(JSON.stringify(data));
-	});
+	})
+	$(".rbtn").click(function(){
+		console.log($(this).html());
+		data={'handle':'motor','id':$(this).html(),'angle':233,};
+		ws.send(JSON.stringify(data));
+	})
 });
 </script>
 
@@ -40,30 +50,45 @@ $(document).ready(function(){
 <div style="
     position: relative;
     border: solid;
-    width: 75px;
-">
-	<div class="btn" style="
+	width: 75px;">
+	
+	<div class="mbtn" style="
     text-align: center;
-    /* background-color: green; */
-">F</div>
+    /* background-color: green; */">F</div>
 	<div>
-		<div  class="btn" style="
-    float: left;
-    width: 50%;
-    text-align: center;
-">L</div>
-		<div class="btn" style="
-    float: left;
-    width: 50%;
-    text-align: center;
-">R</div>
+		<div  class="mbtn" style="
+		float: left;
+		width: 50%;
+		text-align: center;">L</div>
+		<div class="mbtn" style="
+		float: left;
+		width: 50%;
+		text-align: center;">R</div>
 	</div>
 
-	<div class="btn" style="
-    text-align: center;
-">B</div>
+	<div class="mbtn" style="text-align: center;">B</div>
 </div>
+<div style="
+    position: relative;
+    border: solid;
+	width: 75px;">
+	
+	<div class="rbtn" style="
+    text-align: center;
+    /* background-color: green; */">i</div>
+	<div>
+		<div  class="rbtn" style="
+		float: left;
+		width: 50%;
+		text-align: center;">j</div>
+		<div class="rbtn" style="
+		float: left;
+		width: 50%;
+		text-align: center;">l</div>
+	</div>
 
+	<div class="rbtn" style="text-align: center;">k</div>
+</div>
 
 
 </body>
