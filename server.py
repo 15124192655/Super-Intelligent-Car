@@ -25,9 +25,17 @@ if __name__ == "__main__":
         '''
         carControler.setmotor(data['id'],data['angle'])
         logging.info('setmotor %s %s'%(data['id'],data['angle']))
+    async def bind_chika(data,ws):
+        # chika kawai!
+        await ws.send(json.dumps({'handle':'chika','msg':'#0 yo-i yo-i'}))
+        await ws.send(json.dumps({'handle':'chika','msg':'#1 do-nda yo!'}))
+        await ws.send(json.dumps({'handle':'chika','msg':'#hope we can get ordered messages#'}))
+
+
 
     
     wss.hand('move',bind_move)
     wss.hand('motor',bind_motor)
+    wss.hand('chika',bind_chika)
     wss.loop()
 
