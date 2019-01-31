@@ -8,9 +8,9 @@ $(document).ready(function(){
 	};
 	
 	ws.onmessage=function(e){
-		console.log('recv msg',e.data);
+		$(".log").append(e.data).append("\n");
 		dec=JSON.parse(e.data);
-        //TODO: handle consumers here to do data in very way.
+        //TODO: consume data here.
 	}
 	ws.onclose=function(e){
 		console.log('websocket disconnected');
@@ -26,12 +26,17 @@ $(document).ready(function(){
 		console.log($(this).html());
 		data={'handle':'move','direction':$(this).html(),};
 		ws.send(JSON.stringify(data));
-	})
+	});
 	$(".rbtn").click(function(){
 		console.log($(this).html());
 		data={'handle':'motor','id':$(this).html(),'angle':233,};
 		ws.send(JSON.stringify(data));
-	})
+	});
+
+	$(".chika").click(function(){
+		data={'handle':'chika',};
+		ws.send(JSON.stringify(data));
+	});
 });
 </script>
 
@@ -47,48 +52,55 @@ $(document).ready(function(){
     <title>control page</title>
 </head>
 <body>
-<div style="
-    position: relative;
-    border: solid;
-	width: 75px;">
-	
-	<div class="mbtn" style="
-    text-align: center;
-    /* background-color: green; */">F</div>
-	<div>
-		<div  class="mbtn" style="
-		float: left;
-		width: 50%;
-		text-align: center;">L</div>
+<textarea class="log">
+返回数据
+</textarea>
+<div class="chika">chika!</div>
+<div><!--控制部分-->
+	<div style="
+		position: relative;
+		border: solid;
+		width: 75px;">
+		
 		<div class="mbtn" style="
-		float: left;
-		width: 50%;
-		text-align: center;">R</div>
-	</div>
+		text-align: center;
+		/* background-color: green; */">F</div>
+		<div>
+			<div  class="mbtn" style="
+			float: left;
+			width: 50%;
+			text-align: center;">L</div>
+			<div class="mbtn" style="
+			float: left;
+			width: 50%;
+			text-align: center;">R</div>
+		</div>
 
-	<div class="mbtn" style="text-align: center;">B</div>
-</div>
-<div style="
-    position: relative;
-    border: solid;
-	width: 75px;">
-	
-	<div class="rbtn" style="
-    text-align: center;
-    /* background-color: green; */">i</div>
-	<div>
-		<div  class="rbtn" style="
-		float: left;
-		width: 50%;
-		text-align: center;">j</div>
+		<div class="mbtn" style="text-align: center;">B</div>
+	</div>
+	<div style="
+		position: relative;
+		border: solid;
+		width: 75px;">
+		
 		<div class="rbtn" style="
-		float: left;
-		width: 50%;
-		text-align: center;">l</div>
-	</div>
+		text-align: center;
+		/* background-color: green; */">i</div>
+		<div>
+			<div  class="rbtn" style="
+			float: left;
+			width: 50%;
+			text-align: center;">j</div>
+			<div class="rbtn" style="
+			float: left;
+			width: 50%;
+			text-align: center;">l</div>
+		</div>
 
-	<div class="rbtn" style="text-align: center;">k</div>
-</div>
+		<div class="rbtn" style="text-align: center;">k</div>
+	</div>
+</div><!--控制部分end-->
+
 
 
 </body>
