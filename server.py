@@ -29,7 +29,7 @@ if __name__ == "__main__":
     # used to check if the connection and server is under good condition.
     async def bind_chika(data,ws):
         # chika kawai!
-        await ws.send(json.dumps({'handle':'chika','msg':'接收到Heartbeat，服务器正常。千花书记kawai~'}))
+        await ws.send(json.dumps({'handle':'chika','msg':'接收到Heartbeat，服务器正常。chika kawai'}))
 
 
     # register handlers here
