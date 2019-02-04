@@ -1,6 +1,20 @@
 <html>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script>
+function send(ws,data){
+	ws.send(JSON.stringify(data));
+}
+function builddata(id,data){
+	data['handle']=id;
+	return data;
+}
+
+var heatbeatcount=0;
+var handlers={};
+handlers['chika']=function(ws,data){
+	heatbeatcount--;
+	$(".log").append("[HEARTBEAT MESSAGE]"+data['msg']).append("\n");
+};
 $(document).ready(function(){
 	var ws=new WebSocket('ws://127.0.0.1:9090');
 	ws.onopen=function(e){
@@ -8,35 +22,35 @@ $(document).ready(function(){
 	};
 	
 	ws.onmessage=function(e){
-		$(".log").append(e.data).append("\n");
 		dec=JSON.parse(e.data);
         //TODO: consume data here.
+		if('handle' in dec && dec['handle'] in handlers){
+			handlers[dec['handle']](ws,dec);
+		}
 	}
 	ws.onclose=function(e){
 		console.log('websocket disconnected');
+		alert("服务器断开连接");
 	};
 
 	//movement controller
 	$(".mbtn").mouseup(function(){
-		console.log($(this).html());
-		data={'handle':'move','direction':'S',};
-		ws.send(JSON.stringify(data));
+		send(ws,builddata('move',{'direction':'S',}));
 	});
 	$(".mbtn").mousedown(function(){
-		console.log($(this).html());
-		data={'handle':'move','direction':$(this).html(),};
-		ws.send(JSON.stringify(data));
+		send(ws,builddata('move',{'direction':$(this).html(),}));
 	});
 	$(".rbtn").click(function(){
-		console.log($(this).html());
-		data={'handle':'motor','id':$(this).html(),'angle':233,};
-		ws.send(JSON.stringify(data));
+		send(ws,builddata('motor',{'id':$(this).html(),'angle':233,}));
 	});
 
-	$(".chika").click(function(){
-		data={'handle':'chika',};
-		ws.send(JSON.stringify(data));
-	});
+	setInterval(function(){
+		send(ws,builddata('chika',{'version':'0.1.0'}));
+		heatbeatcount++;
+		if(heatbeatcount>2){
+			$(".log").append("[WARNING]连接过慢，服务器是否卡机？\n");
+		}
+	},5000);
 });
 </script>
 
@@ -55,7 +69,6 @@ $(document).ready(function(){
 <textarea class="log">
 返回数据
 </textarea>
-<div class="chika">chika!</div>
 <div><!--控制部分-->
 	<div style="
 		position: relative;

@@ -11,6 +11,7 @@ import json
 import logging
 carControler = FourWheelDriveCar()
 
+
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     wss=WsServer('9090',True)
@@ -18,28 +19,23 @@ if __name__ == "__main__":
         r1,r2=carControler.carMove(data['direction'])
     
     async def bind_motor(data,ws):
-        '''
-        TODO:we suppose the command is a series of movements encoding as an arrays including index and angle of each one.
-        but now, it is just one single movement.
-        '''
         await carControler.setmotor(data['id'],data['angle'])
         logging.info('setmotor %s %s'%(data['id'],data['angle']))
 
     async def bind_action(data,ws):
         await carControler.doaction(data['cmd'])
-
+    
+    # heartbeat signal
+    # used to check if the connection and server is under good condition.
     async def bind_chika(data,ws):
         # chika kawai!
-        await ws.send(json.dumps({'handle':'chika','msg':'#0 yo-i yo-i'}))
-        await ws.send(json.dumps({'handle':'chika','msg':'#1 do-nda yo!'}))
-        await ws.send(json.dumps({'handle':'chika','msg':'#hope we can get ordered messages#'}))
+        await ws.send(json.dumps({'handle':'chika','msg':'接收到Heartbeat，服务器正常。千花书记kawai~'}))
 
 
-
-    
+    # register handlers here
     wss.hand('move',bind_move)
     wss.hand('motor',bind_motor)
     wss.hand('action',bind_action)
-    wss.hand('chika',bind_chika)
+    wss.hand('chika',bind_chika) # actually, it's used to do heartbeat...
     wss.loop()
 

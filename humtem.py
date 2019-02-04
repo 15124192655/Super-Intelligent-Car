@@ -7,6 +7,7 @@ import urllib
 This script is used to upload data the sensor gets
 With the crontab, you can run it regularly.
 '''
+# ATTENTION: you also need to replace a url and data structure below.
 APIKEY = 'APIKey'
 def getSensordata():
     channel=4
@@ -45,7 +46,7 @@ def getSensordata():
             data.append(1)
         j += 1
 
-    logging.info('sonsor is working')
+    logging.info('sonsor is working well')
     logging.info('read data: {data}')
 
     # converting data
@@ -78,7 +79,7 @@ def getSensordata():
 
 def uploadhumtem():
     temperature,humidity=getSensordata()
-    logging.info('current sensor result is %s and %s'%(temperature,humidity))
+    logging.info('current sensor result is {temperature} and {humidity}')
     CurTime = datetime.datetime.now()
     # put the uploading url and data here`
     url='http://api.heclouds.com/devices/11302038/datapoints'
