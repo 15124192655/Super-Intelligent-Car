@@ -116,7 +116,6 @@ class FourWheelDriveCar():
         elif direction == 'S':
             self.__stop()
         else:
-            #print("The input direction is wrong! You can just input: F, B, L, R, BL,BR or S")
             return false,"The input direction is wrong! You can only input: F,B,L,R,BL,BR or S";
         return true,'ok'
 

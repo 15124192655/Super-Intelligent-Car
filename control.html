@@ -30,7 +30,7 @@ $(document).ready(function(){
 		if('handle' in dec && dec['handle'] in handlers){
 			handlers[dec['handle']](ws,dec);
 		}
-	}
+	};
 	ws.onclose=function(e){
 		console.log('websocket disconnected');
 		alert("服务器断开连接");

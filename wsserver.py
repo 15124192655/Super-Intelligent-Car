@@ -5,9 +5,13 @@ import json
 import logging
 class Data:
     def __init__(self,handle):
+        self.data={}
         self.data['handle']=handle
     async def send(self,ws):
         await ws.send(json.dumps(self.data))
+    def add(self,id,val):
+        self.data[id]=val
+        return self
 
 class WsServer:
     async def bind(self,websocket,path):
@@ -46,7 +50,6 @@ if __name__=="__main__":
     logging.basicConfig(level=logging.DEBUG)
     ws=WsServer('9090',True)
     async def test(data,ws):
-        print('test')
-        await ws.send(json.dumps({'handle':'test','msg':data['msg']}))
+        await Data("test").add('msg',data['msg']).send(ws)
     ws.hand("test",test)
     ws.loop()

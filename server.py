@@ -3,10 +3,11 @@ from http.server import BaseHTTPRequestHandler, HTTPServer
 import time
 import socket
 import urllib
-from car_controler import FourWheelDriveCar
+from fakecar_controller import FourWheelDriveCar
 import asyncio
 import websockets
 from wsserver import WsServer
+import wsserver
 import json
 import logging
 carControler = FourWheelDriveCar()
@@ -29,7 +30,7 @@ if __name__ == "__main__":
     # used to check if the connection and server is under good condition.
     async def bind_chika(data,ws):
         # chika kawai!
-        await ws.send(json.dumps({'handle':'chika','msg':'接收到Heartbeat，服务器正常。chika kawai'}))
+        await wsserver.Data("chika").add('msg','heartbeat, server is good. chika kawai').send(ws)
 
 
     # register handlers here
