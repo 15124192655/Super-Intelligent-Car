@@ -8,6 +8,9 @@ function builddata(id,data){
 	data['handle']=id;
 	return data;
 }
+function sendid(ws,id,data){
+	send(ws,builddata(id,data));
+}
 
 var heatbeatcount=0;
 var handlers={};

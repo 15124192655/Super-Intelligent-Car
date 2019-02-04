@@ -79,6 +79,22 @@ class FourWheelDriveCar():
     def __stop(self):
         self.reset()
 
+    async def setmotor(self,id,angle):
+        '''
+        TODO: this function is used to control possible motors.
+        angle is supposed to be ABSTRACT.
+        '''
+        logging.info("set %s to %s" % (id,angle))
+        await asyncio.sleep(1) #fake action
+
+    async def doaction(self,cmd):
+        '''
+        'cmd' express action series like this,'<id>:<abstract angle>,' one by one.
+        '''
+        series=cmd.split(',')
+        for i in series:
+            temp=i.split(':')
+            await self.setmotor(temp[0],temp[1])
  
 
     def carMove(self, direction):
