@@ -77,22 +77,24 @@ def getSensordata():
     GPIO.cleanup()
     return temperature,humidity
 
+def postdata(url,data):
+    curtime=datetime.datetime.now()
+    logging.debug(jdata)
+
+    request = urllib2.Request(url, json.dumps(data))
+    request.add_header('api-key', APIKEY)
+    request.get_method = lambda:'POST'
+    request = urllib2.urlopen(request)
+    return request.read()
+    
+
 def uploadhumtem():
     temperature,humidity=getSensordata()
     logging.info('current sensor result is {temperature} and {humidity}')
     CurTime = datetime.datetime.now()
     # put the uploading url and data here
-    url='http://api.heclouds.com/devices/11302038/datapoints'
-    values={'datastreams':[{"id":"hum","datapoints":[{"at":CurTime.isoformat(),"value":humidity}]}]}
+    postdata('http://api.heclouds.com/devices/11302038/datapoints',{'datastreams':[{"id":"hum","datapoints":[{"at":CurTime.isoformat(),"value":humidity}]}]})
     # end
-    jdata = json.dumps(values)
-    logging.debug(jdata)
-
-    request = urllib2.Request(url, jdata)
-    request.add_header('api-key', APIKEY)
-    request.get_method = lambda:'POST'
-    request = urllib2.urlopen(request)
-    return request.read()
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
