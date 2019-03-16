@@ -27,7 +27,6 @@ class FourWheelDriveCar():
         self.CAM_P2=13
 
         GPIO.setmode(GPIO.BOARD)
-        GPIO.setwarnings(False)
 
         GPIO.setup(self.LEFT_FRONT_1, GPIO.OUT)
         GPIO.setup(self.LEFT_FRONT_2, GPIO.OUT)
@@ -38,6 +37,8 @@ class FourWheelDriveCar():
 
         self.camp1=GPIO.PWM(self.CAM_P1,50)
         self.camp2=GPIO.PWM(self.CAM_P2,50)
+        p1.start(0)
+        p2.start(0)
  
 
     def reset(self):
