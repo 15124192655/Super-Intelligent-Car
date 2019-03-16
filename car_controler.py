@@ -117,7 +117,7 @@ class FourWheelDriveCar():
             self.__stop()
         else:
             return false,"The input direction is wrong! You can only input: F,B,L,R,BL,BR or S";
-        return true,'ok'
+        return True,'ok'
 
 if __name__ == "__main__":
     raspCar = FourWheelDriveCar()
