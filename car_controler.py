@@ -37,8 +37,8 @@ class FourWheelDriveCar():
 
         self.camp1=GPIO.PWM(self.CAM_P1,50)
         self.camp2=GPIO.PWM(self.CAM_P2,50)
-        p1.start(0)
-        p2.start(0)
+        self.camp1.start(0)
+        self.camp2.start(0)
  
 
     def reset(self):
