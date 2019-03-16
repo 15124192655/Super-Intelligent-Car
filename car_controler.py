@@ -132,9 +132,9 @@ class FourWheelDriveCar():
             return false,"The input direction is wrong! You can only input: F,B,L,R,BL,BR or S";
         return True,'ok'
     async def cammove(self,axis,rot):
-        if(axis=="p1"):
+        if(axis=="p1"): # 2-15
             temp=self.camp1
-        elif(axis=="p2"):
+        elif(axis=="p2"): # 1-9
             temp=self.camp2
         
         temp.ChangeDutyCycle(rot)

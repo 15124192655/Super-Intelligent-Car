@@ -14,12 +14,13 @@ function sendid(ws,id,data){
 
 var heatbeatcount=0;
 var handlers={};
+var ws;
 handlers['chika']=function(ws,data){
 	heatbeatcount--;
 	$(".log").append("[HEARTBEAT MESSAGE]"+data['msg']).append("\n");
 };
 $(document).ready(function(){
-	var ws=new WebSocket('ws://10.122.242.183:9090');
+	ws=new WebSocket('ws://10.122.242.183:9090');
 	ws.onopen=function(e){
 		console.log('websocket connected');
 	};
@@ -60,6 +61,7 @@ $(document).ready(function(){
 });
 function d(id,rot){
     	send(ws,builddata('cammove',{'axis':id,'angle':rot,}));
+        }
 
 </script>
 
@@ -75,6 +77,7 @@ function d(id,rot){
     <title>control page</title>
 </head>
 <body>
+<img id="streamimage" class="xform" src="http://10.122.242.183:8080/?action=stream">
 <textarea class="log">
 返回数据
 </textarea>
