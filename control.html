@@ -19,7 +19,7 @@ handlers['chika']=function(ws,data){
 	$(".log").append("[HEARTBEAT MESSAGE]"+data['msg']).append("\n");
 };
 $(document).ready(function(){
-	var ws=new WebSocket('ws://127.0.0.1:9090');
+	var ws=new WebSocket('ws://10.122.242.183:9090');
 	ws.onopen=function(e){
 		console.log('websocket connected');
 	};

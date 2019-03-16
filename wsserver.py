@@ -31,7 +31,7 @@ class WsServer:
     #bind end
 
     def __init__(self,port,debug=False):
-        self.wbserver=websockets.serve(self.bind,'127.0.0.1',port)
+        self.wbserver=websockets.serve(self.bind,'0.0.0.0',port)
         self.debug=debug
         self.handle={}
 
