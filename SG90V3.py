@@ -14,7 +14,8 @@ GPIO.setup(27, GPIO.OUT, initial=False)
 p1= GPIO.PWM(17,50) #50HZ
 
 p2= GPIO.PWM(27,50) #50HZ
-p.start(0)
+p1.start(0)
+p2.start(0)
 time.sleep(2)
 
 while(True):
