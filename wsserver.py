@@ -19,7 +19,7 @@ class WsServer:
         while True:
             #try:
                 data=await websocket.recv()
-                logging.info(f"receive {data}")
+                logging.info("receive %s"%data)
                 dec=json.loads(data)
                 # {'handle':'?',...}
                 if dec['handle'] in self.handle.keys():
