@@ -47,7 +47,7 @@ $(document).ready(function(){
 		send(ws,builddata('motor',{'id':$(this).html(),'angle':233,}));
 	});
     $(".cbtn").click(function(){
-    	send(ws,builddata('cammove',{'axis':$(this).html(),'angle':50,}));
+    	send(ws,builddata('cammove',{'axis':$(this).html(),'angle':0,}));
     });
 
 	setInterval(function(){

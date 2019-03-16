@@ -137,7 +137,7 @@ class FourWheelDriveCar():
         elif(axis=="p2"):
             temp=self.camp2
         
-        temp.ChangeDutyCycle(int(rot))
+        temp.ChangeDutyCycle(2.5+10.0*int(rot)/180)
         await asyncio.sleep(1)
 
         
