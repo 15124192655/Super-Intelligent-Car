@@ -131,7 +131,7 @@ class FourWheelDriveCar():
     def cammove(self,axis,rot):
         if(axis=="p1"):
             temp=self.camp1
-        else if(axis=="p2"):
+        elif(axis=="p2"):
             temp=self.camp2
         temp.ChangeDutyCycle(2.5+10*int(rot)/180)
         await asyncio.sleep(0.02)
