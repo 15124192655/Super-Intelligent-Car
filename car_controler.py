@@ -20,6 +20,9 @@ class FourWheelDriveCar():
         self.LEFT_FRONT_2 = config.getint("car", "LEFT_FRONT_2")
         self.RIGHT_FRONT_1 = config.getint("car", "RIGHT_FRONT_1")
         self.RIGHT_FRONT_2 = config.getint("car", "RIGHT_FRONT_2")
+        
+        self.CAM_P1=11
+        self.CAM_P2=13
 
         GPIO.setmode(GPIO.BOARD)
         GPIO.setwarnings(False)
@@ -28,6 +31,11 @@ class FourWheelDriveCar():
         GPIO.setup(self.LEFT_FRONT_2, GPIO.OUT)
         GPIO.setup(self.RIGHT_FRONT_1, GPIO.OUT)
         GPIO.setup(self.RIGHT_FRONT_2, GPIO.OUT)
+        GPIO.setup(self.CAM_P1,GPIO.OUT,initial=False)
+        GPIO.setup(self.CAM_P2,GPIO.OUT,initial=False)
+
+        self.camp1=GPIO.PWM(self.CAM_P1,50)
+        self.camp2=GPIO.PWM(self.CAM_P2,50)
  
 
     def reset(self):
@@ -120,9 +128,20 @@ class FourWheelDriveCar():
         else:
             return false,"The input direction is wrong! You can only input: F,B,L,R,BL,BR or S";
         return True,'ok'
+    def cammove(self,axis,rot):
+        if(axis=="p1")temp=self.camp1
+        else if(axis=="p2")temp=self.camp2
+        temp.ChangeDutyCycle(2.5+10*int(rot)/180)
+        await asyncio.sleep(0.02)
+        temp.ChangeDutyCycle(0)
+        await asyncio.sleep(0.2)
+
+        
+
 
 if __name__ == "__main__":
     raspCar = FourWheelDriveCar()
     while(True):
         direction = input("Please input direction: ")
         raspCar.carMove(direction)
+

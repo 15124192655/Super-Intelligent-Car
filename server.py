@@ -25,6 +25,9 @@ if __name__ == "__main__":
 
     async def bind_action(data,ws):
         await carControler.doaction(data['cmd'])
+
+    async def bind_cammove(data,ws):
+        await carControler.cammove(data['axis'],data['angle'])
     
     # heartbeat signal
     # used to check if the connection and server is under good condition.
@@ -38,5 +41,6 @@ if __name__ == "__main__":
     wss.hand('motor',bind_motor)
     wss.hand('action',bind_action)
     wss.hand('chika',bind_chika) # actually, it's used to do heartbeat...
+    wss.hand('cammove',bind_cammove)
     wss.loop()
 
