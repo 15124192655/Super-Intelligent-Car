@@ -7,13 +7,13 @@ import signal
 import atexit
 
 atexit.register(GPIO.cleanup) 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(17, GPIO.OUT, initial=False)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(11, GPIO.OUT, initial=False)
 
-GPIO.setup(27, GPIO.OUT, initial=False)
-p1= GPIO.PWM(17,50) #50HZ
+GPIO.setup(13, GPIO.OUT, initial=False)
+p1= GPIO.PWM(11,50) #50HZ
 
-p2= GPIO.PWM(27,50) #50HZ
+p2= GPIO.PWM(13,50) #50HZ
 p1.start(0)
 p2.start(0)
 time.sleep(2)

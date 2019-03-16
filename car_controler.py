@@ -3,6 +3,8 @@
 import RPi.GPIO as GPIO
 import time
 import configparser
+import signal
+import atexit
 
 class FourWheelDriveCar():
     # Define the number of all the GPIO that will used for the 4wd car
