@@ -1,22 +1,4 @@
-***Discarded regretfully and angrily***
-
-没有原因.
-
-但是**该分支的新代码中**下大概有以下工具能二次使用(如果你并没有更好的工具的话).
-
-**封装的Websocket服务器**
-
-位于wsserver.py,websocket协议可以实现小车(或者其他东西)与手机(app,微信小程序,电脑或者其他终端)的直接双向连接,无需经过云.
-
-
-**登录网关的脚本**
-
-一个可以登录第二层网关的小脚本,位于`tools/portal-autologin.py`.
-
-
-**定时任务的一种执行方法**
-
-当然要是用delay啥的也无所谓.这里提供一种使用crontab的方案.
+***Discarded?***
 
 
 # Super-Intelligent-Car
