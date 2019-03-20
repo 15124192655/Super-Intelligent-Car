@@ -60,9 +60,8 @@ $(document).ready(function(){
 	},5000);
 });
 function d(id,rot){
-    	send(ws,builddata('cammove',{'axis':id,'angle':rot,}));
-        }
-
+    send(ws,builddata('cammove',{'axis':id,'angle':rot,}));
+}
 </script>
 
 <style type="text/css">

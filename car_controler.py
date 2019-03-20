@@ -139,6 +139,7 @@ class FourWheelDriveCar():
         
         temp.ChangeDutyCycle(rot)
         await asyncio.sleep(1)
+        temp.ChangeDutyCycle(0)
 
         
 
